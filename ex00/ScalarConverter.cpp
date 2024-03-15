@@ -6,7 +6,7 @@
 /*   By: abenheni <abenheni@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/03/14 22:09:08 by abenheni          #+#    #+#             */
-/*   Updated: 2024/03/15 17:50:39 by abenheni         ###   ########.fr       */
+/*   Updated: 2024/03/15 23:22:59 by abenheni         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -15,22 +15,14 @@
 ScalarConverter::ScalarConverter()
 {
 }
-//     Class Structure: You're asked to create a class named ScalarConverter. It should have a single static method named convert. This method will handle the conversion of various types of literals.
-
-// Method Signature: The convert method should take a string representation of a C++ literal as its parameter.
-
-// Conversion Types: The method needs to output the value of the input literal in four different scalar types: char, int, float, and double.
-
-// Handling Non-Displayable Characters: If the input is a char literal and it's non-displayable, the method should print an informative message indicating that it's non-displayable.
-
-// Handling Invalid Conversions: If a conversion doesn't make sense or overflows (for example, converting a string like "abc" to an integer), the method should inform the user that the conversion is impossible.
-
-// Handling Special Values: Special values like positive and negative infinity (inf, -inf) and NaN (not a number) should also be handled for float and double literals.
-
-// Testing: After implementing the ScalarConverter class, you need to write a test program. This program should take the input literal from the command line, pass it to the convert method of ScalarConverter, and print the results in the specified format.
 void ScalarConverter::convert(const std::string &input)
-{
+{   
     //check if it's a character literal
+    if (input.empty())
+    {
+        std::cout << "Invalid literal" << std::endl;
+        return;
+    }
     if (input.size() == 3 && input.at(0) == '\'' && input.at(2) == '\'')
     {
         char c = input.at(1);
@@ -40,26 +32,41 @@ void ScalarConverter::convert(const std::string &input)
         else
             std::cout << "Non displayable" << std::endl;
         std::cout << "int: " << static_cast<int>(c) << std::endl;
-        std::cout << "float: " << static_cast<float>(c) << "f" << std::endl;
-        std::cout << "double: " << static_cast<double>(c) << std::endl;
+        std::cout << "float: " << static_cast<float>(c) << ".0f" << std::endl;
+        std::cout << "double: " << static_cast<double>(c) << ".0" << std::endl;
     }
     else
-    {
+    {       
         int                 intValue;
         float               floatValue;
         double              doubleValue;
         std::istringstream  issBuffer(input);
+        if (input == "nan" || input == "+inf" || input == "-inf")
+        {
+            std::cout << "char: impossible" << std::endl;
+            std::cout << "int: impossible" << std::endl;
+            std::cout << "float: " << input << "f" << std::endl;
+            std::cout << "double: " << input << std::endl;
+            return;
+        }
+        //check if it's an integer literal and what if it's a floating-point literal also?? is will pass
         if (issBuffer >> intValue)
         {
-            if (std::isprint(static_cast<char>(intValue)))
-                std::cout << "char: " << static_cast<char>(intValue) << std::endl;
-            else
-                std::cout << "char: impossible" << std::endl;
-            std::cout << "int: " << intValue << std::endl;
-            std::cout << "float: " << static_cast<float>(intValue) << ".0f" << std::endl;
-            std::cout << "double: " << static_cast<double>(intValue) << ".0" << std::endl;
+            // check if float or double and should skip and pass the float and double check
+            if (issBuffer.rdbuf()->in_avail() == 0)
+            {
+                std::cout << "char: ";
+                if (std::isprint(static_cast<char>(intValue)))
+                    std::cout << static_cast<char>(intValue) << std::endl;
+                else
+                    std::cout << "Non displayable" << std::endl;
+                std::cout << "int: " << intValue << std::endl;
+                std::cout << "float: " << static_cast<float>(intValue) << ".0f" << std::endl;
+                std::cout << "double: " << static_cast<double>(intValue) << ".0" << std::endl;
+                return;
+            }
         }
-        else if (issBuffer.clear(), issBuffer.seekg(0), issBuffer >> floatValue)
+        if (issBuffer.clear(), issBuffer.seekg(0), issBuffer >> floatValue)
         {
             std::cout << "char: impossible" << std::endl;
             std::cout << "int: impossible" << std::endl;
@@ -76,5 +83,4 @@ void ScalarConverter::convert(const std::string &input)
         else
             std::cout << "Invalid literal" << std::endl;
     }
-    
 }

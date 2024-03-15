@@ -6,11 +6,11 @@
 #    By: abenheni <abenheni@student.42.fr>          +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2024/03/14 22:08:55 by abenheni          #+#    #+#              #
-#    Updated: 2024/03/14 22:13:57 by abenheni         ###   ########.fr        #
+#    Updated: 2024/03/15 22:25:47 by abenheni         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
-NAME = fixed
+NAME = convert
 CC = c++
 RM = rm -f
 OBJ_DIR = objects 
