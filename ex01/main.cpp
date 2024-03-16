@@ -5,29 +5,15 @@
 /*                                                    +:+ +:+         +:+     */
 /*   By: abenheni <abenheni@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2024/03/14 22:09:03 by abenheni          #+#    #+#             */
-/*   Updated: 2024/03/16 00:12:39 by abenheni         ###   ########.fr       */
+/*   Created: 2024/03/16 00:21:19 by abenheni          #+#    #+#             */
+/*   Updated: 2024/03/16 00:21:32 by abenheni         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "ScalarConverter.hpp"
+#include "Serializer.hpp"
 
-
-int main(int ac, char **av)
+int main()
 {
-    if (ac != 2)
-    {
-        std::cerr << "Error: Invalid number of arguments" << std::endl;
-        return (1);
-    }
-    try
-    {
-      ScalarConverter::convert(av[1]);
-    }
-    catch(const std::exception& e)
-    {
-        std::cerr << "Error: Invalid argument" << std::endl;
-        return (1);
-    }
-    return (0);
+    Serializer::serialize("Hello World");
+    return 0;
 }
