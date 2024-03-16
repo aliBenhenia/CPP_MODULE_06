@@ -6,7 +6,7 @@
 /*   By: abenheni <abenheni@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/03/14 22:09:10 by abenheni          #+#    #+#             */
-/*   Updated: 2024/03/16 00:18:59 by abenheni         ###   ########.fr       */
+/*   Updated: 2024/03/16 13:57:50 by abenheni         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -24,6 +24,3 @@ class ScalarConverter{
        static void convert(const std::string &input);
 };
 #endif
-```
-
-```cpp

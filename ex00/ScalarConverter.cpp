@@ -6,7 +6,7 @@
 /*   By: abenheni <abenheni@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/03/14 22:09:08 by abenheni          #+#    #+#             */
-/*   Updated: 2024/03/15 23:22:59 by abenheni         ###   ########.fr       */
+/*   Updated: 2024/03/16 14:03:10 by abenheni         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -23,9 +23,10 @@ void ScalarConverter::convert(const std::string &input)
         std::cout << "Invalid literal" << std::endl;
         return;
     }
-    if (input.size() == 3 && input.at(0) == '\'' && input.at(2) == '\'')
+    // if (input.size() == 3 && input.at(0) == '\'' && input.at(2) == '\'')
+    if (input.size() == 1)
     {
-        char c = input.at(1);
+        char c = input.at(0);
         std::cout << "char: ";
         if (std::isprint(c))
             std::cout << c << std::endl;
@@ -36,7 +37,7 @@ void ScalarConverter::convert(const std::string &input)
         std::cout << "double: " << static_cast<double>(c) << ".0" << std::endl;
     }
     else
-    {       
+    {
         int                 intValue;
         float               floatValue;
         double              doubleValue;
