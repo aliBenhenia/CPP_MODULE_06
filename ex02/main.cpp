@@ -6,7 +6,7 @@
 /*   By: abenheni <abenheni@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/03/17 18:23:14 by abenheni          #+#    #+#             */
-/*   Updated: 2024/03/17 18:23:39 by abenheni         ###   ########.fr       */
+/*   Updated: 2024/03/17 18:41:11 by abenheni         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -18,12 +18,9 @@
 
 int main()
 {
-    Base *a = new A();
-    Base *b = new B();
-    Base *c = new C();
-    
-    delete a;
-    delete b;
-    delete c;
+    Base *base = generate();
+    identify(base);
+    identify(*base);
+    delete base;
     return (0);
 }
