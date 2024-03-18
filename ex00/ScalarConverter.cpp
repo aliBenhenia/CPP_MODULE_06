@@ -6,7 +6,7 @@
 /*   By: abenheni <abenheni@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/03/14 22:09:08 by abenheni          #+#    #+#             */
-/*   Updated: 2024/03/16 14:05:53 by abenheni         ###   ########.fr       */
+/*   Updated: 2024/03/18 21:17:26 by abenheni         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -54,7 +54,7 @@ void ScalarConverter::convert(const std::string &input)
         {
             // check if float or double and should skip and pass the float and double check
             if (issBuffer.rdbuf()->in_avail() == 0)
-            {
+            {printf("here\n");
                 std::cout << "char: ";
                 if (std::isprint(static_cast<char>(intValue)))
                     std::cout << static_cast<char>(intValue) << std::endl;

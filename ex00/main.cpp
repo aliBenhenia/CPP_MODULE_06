@@ -6,7 +6,7 @@
 /*   By: abenheni <abenheni@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/03/14 22:09:03 by abenheni          #+#    #+#             */
-/*   Updated: 2024/03/16 00:12:39 by abenheni         ###   ########.fr       */
+/*   Updated: 2024/03/18 16:09:13 by abenheni         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -17,17 +17,9 @@ int main(int ac, char **av)
 {
     if (ac != 2)
     {
-        std::cerr << "Error: Invalid number of arguments" << std::endl;
+        std::cout << "Error: Invalid number of arguments" << std::endl;
         return (1);
     }
-    try
-    {
-      ScalarConverter::convert(av[1]);
-    }
-    catch(const std::exception& e)
-    {
-        std::cerr << "Error: Invalid argument" << std::endl;
-        return (1);
-    }
+    ScalarConverter::convert(av[1]);
     return (0);
 }
