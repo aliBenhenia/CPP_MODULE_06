@@ -6,17 +6,26 @@
 /*   By: abenheni <abenheni@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/03/14 22:09:08 by abenheni          #+#    #+#             */
-/*   Updated: 2024/03/18 21:17:26 by abenheni         ###   ########.fr       */
+/*   Updated: 2024/03/19 18:04:51 by abenheni         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "ScalarConverter.hpp"
 
-ScalarConverter::ScalarConverter()
+ScalarConverter::ScalarConverter(){}
+
+ScalarConverter::ScalarConverter(const ScalarConverter &obj){*this = obj;}
+
+ScalarConverter &ScalarConverter::operator=(const ScalarConverter &obj)
 {
+    (void)obj;
+    return *this;
 }
+
+ScalarConverter::~ScalarConverter(){}
+
 void ScalarConverter::convert(const std::string &input)
-{   
+{
     //check if it's a character literal
     if (input.empty())
     {
@@ -54,7 +63,7 @@ void ScalarConverter::convert(const std::string &input)
         {
             // check if float or double and should skip and pass the float and double check
             if (issBuffer.rdbuf()->in_avail() == 0)
-            {printf("here\n");
+            {
                 std::cout << "char: ";
                 if (std::isprint(static_cast<char>(intValue)))
                     std::cout << static_cast<char>(intValue) << std::endl;
@@ -69,7 +78,7 @@ void ScalarConverter::convert(const std::string &input)
         if (issBuffer.clear(), issBuffer.seekg(0), issBuffer >> floatValue)
         {
             std::cout << "char: impossible" << std::endl;
-            std::cout << "int: impossible" << std::endl;
+            std::cout << static_cast<int>(floatValue) << std::endl;
             std::cout << "float: " << floatValue << "f" << std::endl;
             std::cout << "double: " << static_cast<double>(floatValue) << std::endl;
         }
