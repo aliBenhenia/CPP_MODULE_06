@@ -5,91 +5,156 @@
 /*                                                    +:+ +:+         +:+     */
 /*   By: abenheni <abenheni@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2024/03/14 22:09:08 by abenheni          #+#    #+#             */
-/*   Updated: 2024/03/19 18:04:51 by abenheni         ###   ########.fr       */
+/*   Created: 2024/03/23 01:20:14 by abenheni          #+#    #+#             */
+/*   Updated: 2024/03/23 18:34:38 by abenheni         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "ScalarConverter.hpp"
 
-ScalarConverter::ScalarConverter(){}
-
-ScalarConverter::ScalarConverter(const ScalarConverter &obj){*this = obj;}
-
-ScalarConverter &ScalarConverter::operator=(const ScalarConverter &obj)
+int checkNumber(const std::string &input)
 {
-    (void)obj;
-    return *this;
+    if (input.length() == 1 && !isdigit(input[0]))
+        return (0);
+    size_t i = 0;
+    if (input[i] == '+' || input[i] == '-')
+        i++;
+    while (i < input.length())
+    {
+        if (!isdigit(input[i]))
+            return (0);
+        i++;
+    }
+    return (NUMBER_);
 }
 
-ScalarConverter::~ScalarConverter(){}
+int checkChar(const std::string &input)
+{
+    if (input.length() != 1)
+        return (0);
+    if (!isprint(input[0]))
+        return (0);
+    return (CHAR_);
+}
+
+int checkFloat(const std::string &input)
+{
+    int dotFlag = 0;
+    if (input.length() == 1 && !isdigit(input[0]))
+        return (0);
+    size_t i = 0;
+    while (i < input.length())
+    {
+        if (input[i] == '.')
+            dotFlag++;
+        if (!isdigit(input[i]) && input[i] != '.')
+            return (0);
+        i++;
+    }
+    if (dotFlag > 1)
+        return (0);
+    return (FLOAT_);
+}
+
+int checkDouble(const std::string &input)
+{
+    int dotFlag = 0;
+    if (input.length() == 1 && !isdigit(input[0]))
+        return (0);
+    size_t i = 0;
+    while (i < input.length())
+    {
+        if (input[i] == '.')
+            dotFlag++;
+        if (!isdigit(input[i]) && input[i] != '.')
+            return (0);
+        i++;
+    }
+    if (dotFlag > 1)
+        return (0);
+    return (DOUBLE_);
+}
+
+int ScalarConverter::checkValidInput(const std::string &input)
+{
+    if (checkNumber(input))
+        return (NUMBER_);
+    else if (checkChar(input))
+        return (CHAR_);
+    else if (checkFloat(input))
+        return (FLOAT_);
+    else if (checkDouble(input))
+        return (DOUBLE_);
+    else
+        return (0);
+}
+
+void handleNumber(const std::string &input)
+{
+    int num;
+    
+    num = atoi(input.c_str());
+    std::cout << "char: ";
+    if (num < 32 || num > 126)
+        std::cout << "Non displayable" << std::endl;
+    else
+        std::cout << "'" << static_cast<char>(num) << "'" << std::endl;
+    std::cout << "int: " << num << std::endl;
+    std::cout << "float: " << static_cast<float>(num) << ".0f" << std::endl;
+    std::cout << "double: " << static_cast<double>(num) << ".0" << std::endl;
+}
+
+void handleChar(const std::string &input)
+{
+    char c = input[0];
+    std::cout << "char: '" << c << "'" << std::endl;
+    std::cout << "int: " << static_cast<int>(c) << std::endl;
+    std::cout << "float: " << static_cast<float>(c) << ".0f" << std::endl;
+    std::cout << "double: " << static_cast<double>(c) << ".0" << std::endl;
+}
+
+void handleFloat(const std::string &input)
+{
+    std::string inputFloat = input;
+    if (input.back() == 'f')
+    {
+        // remove the f at the end
+        inputFloat = input.substr(0, input.length() - 1);
+    }
+    float f;
+    std::stringstream ss(inputFloat);
+    ss >> f;
+    std::cout << "char: ";
+    if (f < 32 || f > 126)
+        std::cout << "Non displayable" << std::endl;
+    else
+        std::cout << "'" << static_cast<char>(f) << "'" << std::endl;
+    std::cout << "int: " << static_cast<int>(f) << std::endl;
+    std::cout << "float: " << f << "f" << std::endl;
+    std::cout << "double: " << static_cast<double>(f) << std::endl;
+}
+
+void handleDouble(const std::string &input)
+{
+    
+}
+
 
 void ScalarConverter::convert(const std::string &input)
 {
-    //check if it's a character literal
-    if (input.empty())
+    int type = checkValidInput(input);
+
+    if (type)
     {
-        std::cout << "Invalid literal" << std::endl;
-        return;
-    }
-    if (input.size() == 1)
-    {
-        char c = input.at(0);
-        std::cout << "char: ";
-        if (std::isprint(c))
-            std::cout << c << std::endl;
-        else
-            std::cout << "Non displayable" << std::endl;
-        std::cout << "int: " << static_cast<int>(c) << std::endl;
-        std::cout << "float: " << static_cast<float>(c) << ".0f" << std::endl;
-        std::cout << "double: " << static_cast<double>(c) << ".0" << std::endl;
+        if (type == NUMBER_)
+            handleNumber(input);
+        else if (type == CHAR_)
+            handleChar(input);
+        else if (type == FLOAT_)
+            handleFloat(input);
+        else if (type == DOUBLE_)
+            handleDouble(input);
     }
     else
-    {
-        int                 intValue;
-        float               floatValue;
-        double              doubleValue;
-        std::istringstream  issBuffer(input);
-        if (input == "nan" || input == "+inf" || input == "-inf")
-        {
-            std::cout << "char: impossible" << std::endl;
-            std::cout << "int: impossible" << std::endl;
-            std::cout << "float: " << input << "f" << std::endl;
-            std::cout << "double: " << input << std::endl;
-            return;
-        }
-        //check if it's an integer literal and what if it's a floating-point literal also?? is will pass
-        if (issBuffer >> intValue)
-        {
-            // check if float or double and should skip and pass the float and double check
-            if (issBuffer.rdbuf()->in_avail() == 0)
-            {
-                std::cout << "char: ";
-                if (std::isprint(static_cast<char>(intValue)))
-                    std::cout << static_cast<char>(intValue) << std::endl;
-                else
-                    std::cout << "Non displayable" << std::endl;
-                std::cout << "int: " << intValue << std::endl;
-                std::cout << "float: " << static_cast<float>(intValue) << ".0f" << std::endl;
-                std::cout << "double: " << static_cast<double>(intValue) << ".0" << std::endl;
-                return;
-            }
-        }
-        if (issBuffer.clear(), issBuffer.seekg(0), issBuffer >> floatValue)
-        {
-            std::cout << "char: impossible" << std::endl;
-            std::cout << static_cast<int>(floatValue) << std::endl;
-            std::cout << "float: " << floatValue << "f" << std::endl;
-            std::cout << "double: " << static_cast<double>(floatValue) << std::endl;
-        }
-        else if (issBuffer.clear(), issBuffer.seekg(0), issBuffer >> doubleValue)
-        {
-            std::cout << "char: impossible" << std::endl;
-            std::cout << "int: impossible" << std::endl;
-            std::cout << "float: impossible" << std::endl;
-            std::cout << "double: " << doubleValue << std::endl;
-        }
-        else
-            std::cout << "Invalid literal" << std::endl;
-    }
+        std::cout << "Invalid input" << std::endl;
 }
