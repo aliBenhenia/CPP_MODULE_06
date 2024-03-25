@@ -6,12 +6,13 @@
 /*   By: abenheni <abenheni@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/03/23 01:20:14 by abenheni          #+#    #+#             */
-/*   Updated: 2024/03/24 00:44:49 by abenheni         ###   ########.fr       */
+/*   Updated: 2024/03/25 18:09:29 by abenheni         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "ScalarConverter.hpp"
-#include <iomanip> // for std::setprecision and std::fixed
+#include <iomanip>
+
 int checkNumber(const std::string &input)
 {
     if (input.length() == 1 && !isdigit(input[0]))
@@ -58,7 +59,7 @@ int checkFloat(const std::string &input)
             return (0);
         i++;
     }
-    if (dotFlag > 1)
+    if (dotFlag > 1 || dotFlag == 0)
         return (0);
     return (FLOAT_);
 }
@@ -79,7 +80,7 @@ int checkDouble(const std::string &input)
             return (0);
         i++;
     }
-    if (dotFlag > 1)
+    if (dotFlag > 1 || dotFlag == 0)
         return (0);
     return (DOUBLE_);
 }
@@ -242,5 +243,5 @@ void ScalarConverter::convert(const std::string &input)
             handleDouble(input);
     }
     else
-        std::cout << "Invalid input" << std::endl;
+        std::cout << "Invalid type" << std::endl;
 }
