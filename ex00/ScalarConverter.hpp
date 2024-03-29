@@ -6,7 +6,7 @@
 /*   By: abenheni <abenheni@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/03/14 22:09:10 by abenheni          #+#    #+#             */
-/*   Updated: 2024/03/25 17:56:22 by abenheni         ###   ########.fr       */
+/*   Updated: 2024/03/29 22:01:34 by abenheni         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -17,7 +17,7 @@
 #include <string>
 #include <sstream>
 
-#define NUMBER_ 1
+#define INT_ 1
 #define CHAR_ 2
 #define FLOAT_ 3
 #define DOUBLE_ 4
@@ -28,12 +28,10 @@ class ScalarConverter{
         static void convert(const std::string &input);
         static int checkValidInput(const std::string &input);
         ScalarConverter &operator=(const ScalarConverter &obj);
-        ~ScalarConverter();
     private:
         ScalarConverter(const ScalarConverter &obj);
         ScalarConverter();
-        
-  
+        ~ScalarConverter();
 };
 
 

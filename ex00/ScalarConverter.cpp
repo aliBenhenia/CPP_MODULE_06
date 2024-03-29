@@ -6,7 +6,7 @@
 /*   By: abenheni <abenheni@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/03/23 01:20:14 by abenheni          #+#    #+#             */
-/*   Updated: 2024/03/25 18:09:29 by abenheni         ###   ########.fr       */
+/*   Updated: 2024/03/29 22:01:43 by abenheni         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -26,7 +26,7 @@ int checkNumber(const std::string &input)
             return (0);
         i++;
     }
-    return (NUMBER_);
+    return (INT_);
 }
 
 int checkChar(const std::string &input)
@@ -88,7 +88,7 @@ int checkDouble(const std::string &input)
 int ScalarConverter::checkValidInput(const std::string &input)
 {
     if (checkNumber(input))
-        return (NUMBER_);
+        return (INT_);
     else if (checkChar(input))
         return (CHAR_);
     else if (checkFloat(input))
@@ -233,7 +233,7 @@ void ScalarConverter::convert(const std::string &input)
 
     if (type)
     {
-        if (type == NUMBER_)
+        if (type == INT_)
             handleNumber(input);
         else if (type == CHAR_)
             handleChar(input);
