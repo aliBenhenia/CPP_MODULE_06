@@ -6,7 +6,7 @@
 /*   By: abenheni <abenheni@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/03/17 18:21:36 by abenheni          #+#    #+#             */
-/*   Updated: 2024/03/31 01:34:09 by abenheni         ###   ########.fr       */
+/*   Updated: 2024/03/31 01:36:33 by abenheni         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -16,6 +16,7 @@
 #include "B.hpp"
 #include "C.hpp"
 #include <cstdlib>
+#include <ctime>
 Base::~Base() {};
 
 Base * generate(void)
