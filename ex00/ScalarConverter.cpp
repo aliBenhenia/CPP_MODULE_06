@@ -6,12 +6,27 @@
 /*   By: abenheni <abenheni@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/03/23 01:20:14 by abenheni          #+#    #+#             */
-/*   Updated: 2024/03/29 22:01:43 by abenheni         ###   ########.fr       */
+/*   Updated: 2024/03/31 00:45:38 by abenheni         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "ScalarConverter.hpp"
 #include <iomanip>
+
+
+ScalarConverter::ScalarConverter()
+{
+}
+
+ScalarConverter::~ScalarConverter()
+{
+}
+
+ScalarConverter &ScalarConverter::operator=(const ScalarConverter &obj)
+{
+    (void)obj;
+    return (*this);
+}
 
 int checkNumber(const std::string &input)
 {

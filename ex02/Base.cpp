@@ -6,7 +6,7 @@
 /*   By: abenheni <abenheni@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/03/17 18:21:36 by abenheni          #+#    #+#             */
-/*   Updated: 2024/03/17 18:40:30 by abenheni         ###   ########.fr       */
+/*   Updated: 2024/03/31 01:34:09 by abenheni         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -20,6 +20,7 @@ Base::~Base() {};
 
 Base * generate(void)
 {
+    std::srand((unsigned int)std::time(NULL));
     int i = rand() % 3;
     if (i == 0)
         return (new A);

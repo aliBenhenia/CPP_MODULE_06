@@ -6,7 +6,7 @@
 /*   By: abenheni <abenheni@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/03/16 00:14:32 by abenheni          #+#    #+#             */
-/*   Updated: 2024/03/17 00:50:32 by abenheni         ###   ########.fr       */
+/*   Updated: 2024/03/30 00:33:18 by abenheni         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -15,7 +15,7 @@
 #include <iostream>
 #include <fstream>
 #include <string>
-#include <ctime>
+#include <cstdint>
 #include "Data.hpp"
 class Serializer{
     private:
