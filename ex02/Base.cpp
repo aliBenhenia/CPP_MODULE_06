@@ -6,7 +6,7 @@
 /*   By: abenheni <abenheni@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/03/17 18:21:36 by abenheni          #+#    #+#             */
-/*   Updated: 2024/03/31 01:36:33 by abenheni         ###   ########.fr       */
+/*   Updated: 2024/03/31 02:00:16 by abenheni         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -44,5 +44,32 @@ void identify(Base * p)
 
 void identify(Base& p)
 {
-    identify(&p);
+    try
+    {
+        A &a = dynamic_cast<A&>(p);
+        (void)a;
+        std::cout << "A" << std::endl;
+    }
+    catch(const std::exception& e)
+    {
+        try
+        {
+            B &b = dynamic_cast<B&>(p);
+            (void)b;
+            std::cout << "B" << std::endl;
+        }
+        catch(const std::exception& e)
+        {
+            try
+            {
+                C &c = dynamic_cast<C&>(p);
+                (void)c;
+                std::cout << "C" << std::endl;
+            }
+            catch(const std::exception& e)
+            {
+                std::cout << "Unknown" << std::endl;
+            }
+        }
+    }
 }
